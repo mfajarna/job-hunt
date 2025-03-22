@@ -17,7 +17,7 @@ const clients = [
 
 const CClients: FC<CClientsProps> = ({}) => {
   return (
-    <div className="relative z-10">
+    <div className="relative z-10 pt-10">
       <CTitleSection word1="Companies we" word2="helped grow" />
 
       <div className="overflow-x-hidden mt-12">
