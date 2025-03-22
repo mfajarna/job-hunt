@@ -10,13 +10,12 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useToast } from '@/hooks/use-toast';
 import { formSignInSchema } from '@/lib/form-schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Link from 'next/link';
-
-import { useToast } from '@/hooks/use-toast';
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -100,7 +99,7 @@ const SigninPage: React.FC = () => {
           </Button>
 
           <div className="text-gray-500 text-sm mt-6">
-            Don't have an account? {''}
+            Dont have an account? {''}
             <Link href={'/signup'} className="text-primary font-medium">
               Sign Up
             </Link>
