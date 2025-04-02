@@ -1,4 +1,3 @@
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import {
   Table,
   TableBody,
@@ -9,6 +8,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { USER_HISTORY_APPLY_COLUMNS } from '@/constants';
+import { authOptions } from '@/lib/auth-config';
 import prisma from '@/lib/prisma';
 import { dateFormat } from '@/lib/utils';
 import { getServerSession } from 'next-auth';

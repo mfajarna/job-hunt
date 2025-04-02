@@ -19,17 +19,12 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 import { AiOutlineFire } from 'react-icons/ai';
 import { BsPeople } from 'react-icons/bs';
 import {
   HiOutlineLocationMarker,
   HiOutlineOfficeBuilding,
 } from 'react-icons/hi';
-
-type DetailCompanyPageProps = {
-  id: string;
-};
 
 const getDetailCompany = async (id: string) => {
   const data = await prisma.company.findFirst({
@@ -56,7 +51,12 @@ const getDetailCompany = async (id: string) => {
   return parseCompany(data);
 };
 
-const DetailCompanyPage: React.FC<DetailCompanyPageProps> = async ({ id }) => {
+export default async function DetailCompanyPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
   const company = await getDetailCompany(id);
 
   return (
@@ -273,6 +273,4 @@ const DetailCompanyPage: React.FC<DetailCompanyPageProps> = async ({ id }) => {
       </div>
     </>
   );
-};
-
-export default DetailCompanyPage;
+}

@@ -1,4 +1,3 @@
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import CModalAppy from '@/components/organism/CModalApply';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -11,19 +10,13 @@ import {
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Separator } from '@/components/ui/separator';
+import { authOptions } from '@/lib/auth-config';
 import prisma from '@/lib/prisma';
 import { supabasePublicUrl } from '@/lib/supabase';
 import { dateFormat } from '@/lib/utils';
 import { getServerSession } from 'next-auth';
 import Image from 'next/image';
-import React from 'react';
 import { BiCategory } from 'react-icons/bi';
-
-type DetailJobPageProps = {
-  params: {
-    id: string;
-  };
-};
 
 async function getDetailJob(id: string) {
   const session = await getServerSession(authOptions);
@@ -87,8 +80,14 @@ async function getDetailJob(id: string) {
   };
 }
 
-const DetailJobPage: React.FC<DetailJobPageProps> = async ({ params }) => {
-  const data = await getDetailJob(params.id);
+export default async function DetailJobPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+
+  const data = await getDetailJob(id);
   const session = await getServerSession(authOptions);
 
   return (
@@ -292,6 +291,4 @@ const DetailJobPage: React.FC<DetailJobPageProps> = async ({ params }) => {
       </div>
     </>
   );
-};
-
-export default DetailJobPage;
+}
