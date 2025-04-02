@@ -22,9 +22,8 @@ export default function baseService({
   timeout,
 }: BaseServiceType) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const url: string = (baseUrl ?? '') + path;
-
-  console.log('URL >>>', url);
+  // const url: string = (baseUrl ?? '') + path;
+  const url = path;
 
   return instance
     .request({
