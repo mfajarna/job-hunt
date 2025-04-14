@@ -25,6 +25,8 @@ export default function baseService({
   const url: string = (baseUrl ?? '') + path;
   // const url = path;
 
+  console.log('url', url);
+
   return instance
     .request({
       method,
