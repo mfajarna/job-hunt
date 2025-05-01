@@ -16,7 +16,7 @@ const aboutLinks = [
 ];
 const resourceLinks = ['Help Docs', 'Guide', 'Updates', 'Contact Us'];
 const socialMediaImg = [
-  '/images/soc-facebook.png',
+  '/images/soc-Facebook.png',
   '/images/soc-Instagram.png',
   '/images/soc-Twitter.png',
   '/images/soc-LinkedIn.png',
