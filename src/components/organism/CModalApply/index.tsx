@@ -15,8 +15,10 @@ import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { formAppySchema } from '@/lib/form-schema';
+import { applyJob } from '@/lib/http';
 import { supabaseUploadFile } from '@/lib/supabase';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -51,6 +53,24 @@ const CModalAppy: React.FC<CModalAppyProps> = ({
     resolver: zodResolver(formAppySchema),
   });
 
+  const mutation = useMutation({
+    mutationFn: applyJob,
+    onSuccess: async () => {
+      await toast({
+        title: 'Success',
+        description: 'Apply job success',
+      });
+
+      router.replace('/');
+    },
+    onError: async () => {
+      await toast({
+        title: 'Error',
+        description: 'Please try again',
+      });
+    },
+  });
+
   const onSubmit = async (val: TFormSchema) => {
     try {
       const { filename, error } = await supabaseUploadFile(
@@ -74,18 +94,20 @@ const CModalAppy: React.FC<CModalAppyProps> = ({
         throw 'Error';
       }
 
-      await fetch('/api/job/apply', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(reqData),
-      });
+      // await fetch('/api/job/apply', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(reqData),
+      // });
 
-      await toast({
-        title: 'Success',
-        description: 'Apply job success',
-      });
+      // await toast({
+      //   title: 'Success',
+      //   description: 'Apply job success',
+      // });
 
-      router.replace('/');
+      // router.replace('/');
+
+      await mutation.mutate(reqData);
     } catch (error) {
       console.log(error);
       toast({
@@ -94,6 +116,8 @@ const CModalAppy: React.FC<CModalAppyProps> = ({
       });
     }
   };
+
+  const isLoading = mutation.isPending && !mutation.isSuccess;
 
   return (
     <Dialog>
@@ -251,7 +275,7 @@ const CModalAppy: React.FC<CModalAppyProps> = ({
 
               <CUploadFile form={form} />
 
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full" disabled={isLoading}>
                 Apply
               </Button>
             </form>

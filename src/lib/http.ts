@@ -36,3 +36,12 @@ export async function getFilterWordsJob(words: string): Promise<void> {
     method: 'GET',
   }).then((response) => response);
 }
+
+export async function applyJob(args: any): Promise<void> {
+  return baseService({
+    path: '/job/apply',
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    bodyReq: args,
+  });
+}

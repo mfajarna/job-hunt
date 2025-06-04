@@ -237,7 +237,7 @@ export default async function DetailJobPage({
               <div className="flex flex-row justify-between">
                 <div className="text-gray-500">Salary</div>
                 <div className="font-semibold">
-                  ${data?.salaryFrom}-${data?.salaryTo} USD
+                  Rp. {data?.salaryFrom} - Rp. {data?.salaryTo}
                 </div>
               </div>
             </div>
