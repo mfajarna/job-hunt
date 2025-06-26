@@ -5,7 +5,6 @@ import CCategory from '@/components/organism/CCategory';
 import CClients from '@/components/organism/CClients';
 import CFeaturedJobs from '@/components/organism/CFeaturedJobs';
 import CHero from '@/components/organism/CHero';
-import CLatestJobs from '@/components/organism/CLatestJobs';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import React from 'react';
@@ -36,7 +35,7 @@ export default function Home() {
 
         <CFeaturedJobs />
 
-        <CLatestJobs />
+        {/* <CLatestJobs /> */}
       </div>
     </div>
   );

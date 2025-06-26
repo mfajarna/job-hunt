@@ -75,12 +75,12 @@ const CNavbar: FC<CNavbarProps> = ({}) => {
           >
             Browse Company
           </Link>
-          <Link
+          {/* <Link
             className="text-sm/6 font-semibold text-gray-900 border-transparent transition-all duration-600 hover:text-primary hover:border-b-2 border-b-primary px-2"
             href={'#latest-job'}
           >
             Latest Jobs
-          </Link>
+          </Link> */}
         </div>
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-2">
